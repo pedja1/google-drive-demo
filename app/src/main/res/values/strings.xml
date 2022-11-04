@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Google Drive Demo App</string>
+    <string name="screen_title_login">Login</string>
+    <string name="screen_title_files">Files</string>
+    <string name="generic_error">"Inconceivable. An error has occurred."</string>
+    <string name="search_hint">Search your files</string>
+    <string name="root_folder_name">My Drive</string>
+    <string name="drive_file_options_rename">Rename</string>
+    <string name="drive_file_options_delete">Delete</string>
+    <string name="drive_file_options_download">Download</string>
+    <string name="not_yet_implemented">Action is not yet implemented</string>
+    <string name="menu_option_logout">Logout</string>
+    <string name="login_message">To continue Sign In with your Google account.</string>
+    <string name="downloading_scheduled_toast">File download scheduled, check notification bar</string>
+    <string name="preview_not_supported">Unable to preview this file</string>
+</resources>

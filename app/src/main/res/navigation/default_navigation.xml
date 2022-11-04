@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/default_navigation"
+    tools:ignore="InvalidNavigation">
+    <!--start destination is set programmatically-->
+
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.demo.googledrive.ui.fragment.FragmentLogin"
+        android:label="@string/screen_title_login">
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentFiles"
+            app:destination="@id/fragmentFiles"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/default_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentFiles"
+        android:name="com.demo.googledrive.ui.fragment.FragmentFiles"
+        android:label="@string/screen_title_files">
+        <action
+            android:id="@+id/action_fragmentFiles_to_fragmentLogin"
+            app:destination="@id/fragmentLogin"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/default_navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentFiles_to_fragmentPreview"
+            app:destination="@id/fragmentPreview" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentPreview"
+        android:name="com.demo.googledrive.ui.fragment.FragmentPreview">
+        <argument
+            android:name="previewUrl"
+            app:nullable="false"
+            app:argType="string"/>
+    </fragment>
+
+
+</navigation>

@@ -1,0 +1,94 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs'
+    id 'com.google.dagger.hilt.android'
+    id 'org.jetbrains.kotlin.kapt'
+}
+
+android {
+    namespace 'com.demo.googledrive'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.demo.googledrive"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "com.demo.googledrive.HiltTestRunner"
+    }
+
+
+    signingConfigs {
+        stage {
+            keyAlias System.getenv("DRIVE_DEMO_ALIAS")
+            keyPassword System.getenv("DRIVE_DEMO_KEYPASS")
+            storeFile new File(String.valueOf(System.getenv("DRIVE_DEMO_KEYSTORE")))
+            storePassword System.getenv("DRIVE_DEMO_STOREPASS")
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.stage
+        }
+        debug {
+            signingConfig signingConfigs.stage
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+hilt {
+    enableAggregatingTask = true
+}
+
+dependencies {
+    implementation 'androidx.fragment:fragment-ktx:1.5.3'
+
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    implementation "androidx.navigation:navigation-fragment:2.5.2"
+    implementation "androidx.navigation:navigation-ui:2.5.2"
+
+    implementation 'com.google.dagger:hilt-android:2.44'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.0-beta01'
+    kapt 'com.google.dagger:hilt-compiler:2.44'
+
+    implementation "androidx.activity:activity-ktx:1.6.0"
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+
+    implementation project(":core")
+    implementation project(":data")
+
+    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0-beta01'
+    debugImplementation "androidx.fragment:fragment-testing:1.5.3"
+    debugImplementation 'androidx.test:core-ktx:1.5.0-beta01'
+    androidTestImplementation "androidx.navigation:navigation-testing:2.5.2"
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.44'
+    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.44'
+    androidTestImplementation project(":testutils")
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation "com.google.truth:truth:1.1.3"
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation 'app.cash.turbine:turbine:0.12.0'
+}
